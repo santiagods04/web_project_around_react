@@ -1,0 +1,119 @@
+.elements{
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.elements__target{
+  width: 282px;
+  height: 361px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: white;
+  color: black;
+  position: relative;
+}
+
+.elements__icon-delete{
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  width: 18px;
+  height: 19.3px;
+  background-image: url(../images/icon-delete.svg);
+  background-color: transparent;
+  border: 0;
+}
+
+.elements__icon-delete:hover{
+  opacity: .6;
+  cursor: pointer;
+}
+
+.elements__image{
+  width: 100%;
+  height: 80%;
+  border-radius: 10px 10px 0px 0px;
+  z-index: -1;
+  cursor: pointer;
+}
+
+.elements__txt-cont{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 25px 12px;
+}
+
+.elements__txt{
+  max-width: 225px;
+  font-weight: 900;
+  font-size: 23px;
+  line-height: 29.05px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.elements__icon-like{
+  cursor: pointer;
+  background-image: url(../images/icon-like.svg);
+  background-color: transparent;
+  width: 21px;
+  height: 19px;
+  border: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.elements__icon-like_active{
+  background-image: url(../images/icon-like-active.svg);
+}
+
+.elements__icon-like:hover{
+  opacity: .6;
+
+}
+
+@media screen and (max-width: 900px) {
+  .elements{
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .elements__target{
+    margin: auto;
+    max-width: 282px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: white;
+    color: black;
+    position: relative;
+  }
+
+}
+
+@media screen and (max-width: 620px) {
+
+  .elements{
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .elements__txt{
+    font-weight: 900;
+    font-size: 23px;
+    line-height: 29.05px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,30 @@
+.footer{
+  margin-top: 67px;
+  padding-bottom: 40px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.78px;
+  color: gray;
+}
+
+@media screen and (max-width: 900px) {
+  .footer{
+    margin-top: 50px;
+    padding-bottom: 36px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: gray;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .footer{
+    margin-top: 50px;
+    padding-bottom: 36px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.94px;
+    color: gray;
+  }
+}
