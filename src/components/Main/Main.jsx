@@ -47,9 +47,9 @@ export default function Main() {
       <section className="profile">
         <div className="profile__main">
           <div className="profile__image-container">
-            <img src="" alt="Aquí hay una imagen" className="profile__image" />
+            <img src="/images/image.png" alt="Aquí hay una imagen" className="profile__image" />
             <div className="profile__image-overlay">
-              <img src="./images/icon-edit-a.svg" alt="Editar perfil" className="profile__image-pencil" onClick={() => handleOpenPopup(editAvatarPopup)} />
+              <img src="/images/icon-edit-a.svg" alt="Editar perfil" className="profile__image-pencil" onClick={() => handleOpenPopup(editAvatarPopup)} />
             </div>
           </div>
 
