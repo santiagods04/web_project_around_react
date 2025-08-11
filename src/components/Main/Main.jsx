@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/NewCard/NewCard";
 import EditAvatar from "./components/Popup/EditAvatar/EditAvatar";
@@ -6,7 +6,7 @@ import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
 import Card from "./components/Card/Card";
 import api from "../../utils/Api.js";
-
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function Main() {
   const [cards, setCards] = useState([]);
@@ -14,7 +14,7 @@ export default function Main() {
   const newCardPopup = { title: "Nuevo lugar", children: <NewCard /> };
   const editAvatarPopup = { title: "Editar avatar", children: <EditAvatar /> };
   const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> };
-
+  const currentUser = useContext(CurrentUserContext);
   const [selectedCard, setSelectedCard] = useState(null);
   
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function Main() {
       <section className="profile">
         <div className="profile__main">
           <div className="profile__image-container">
-            <img src="/images/image.png" alt="Aquí hay una imagen" className="profile__image" />
+            <img src={currentUser?.avatar} alt={currentUser?.name} className="profile__image" />
             <div className="profile__image-overlay">
               <img src="/images/icon-edit-a.svg" alt="Editar perfil" className="profile__image-pencil" onClick={() => handleOpenPopup(editAvatarPopup)} />
             </div>
@@ -45,7 +45,7 @@ export default function Main() {
 
           <div className="profile__txt">
             <div className="profile__cont-edit">
-              <h1 className="profile__name">Jacques Cousteau</h1>
+              <h1 className="profile__name">{currentUser?.name}</h1>
               <button className="profile__icon-edit" onClick={() => handleOpenPopup(editProfilePopup)}></button>
             </div>
             <p className="profile__description">Explorador</p>

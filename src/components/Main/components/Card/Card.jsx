@@ -1,5 +1,10 @@
+import { useContext } from "react";
+import CurrentUserContext from "../../../../contexts/CurrentUserContext";
+
 export default function Card(props) {
-  const { card, handleOpenPopup } = props;
+  const { card, handleOpenPopup, onLike } = props;
+
+  
   return (
     <div className="elements__target">
       <button className="elements__icon-delete"></button>
