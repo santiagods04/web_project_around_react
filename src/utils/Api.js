@@ -5,10 +5,8 @@ class Api {
   }
 
   _checkResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error ${res.status}`);
+    if (!res.ok) return Promise.reject(`Error ${res.status}`);
+    return res.text().then(t => (t ? JSON.parse(t) : {}));
   }
 
   renderLoading(isLoading, buttonSelector) {
@@ -36,12 +34,12 @@ class Api {
 
   getInitialCards(){
     return fetch(`${this._url}/cards/`,{
+      cache: "no-store",
       headers: {
         authorization: this._token, 'Content-Type': 'application/json'
       }
     })
     .then(this._checkResponse)
-    .catch(err => console.log('Error al cargar tarjetas:', err));
   }
 
   updateUserInfo({name, job}){
@@ -81,7 +79,7 @@ class Api {
       }
     })
     .then(this._checkResponse)
-    .catch(err => console.log('Error al gestionar like:', err));
+    
   }
 
   handleDeleteCard(cardId){
