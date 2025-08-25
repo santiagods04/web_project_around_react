@@ -90,7 +90,6 @@ class Api {
       }
     })
     .then(this._checkResponse)
-    .catch(err => console.log('Error al eliminar tarjeta:', err));
   }
 
   updateAvatar(avatar){

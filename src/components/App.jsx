@@ -16,6 +16,14 @@ function App() {
       .catch((err) => console.error("Error cargando usuario:", err));
   }, []);
 
+   const handleUpdateUser = (data) => {
+      (async () => {
+        await api.updateUserInfo(data).then((newData) => {
+          setCurrentUser(newData);
+        });
+      })();
+    };
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
