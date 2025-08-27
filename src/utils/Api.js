@@ -53,7 +53,6 @@ class Api {
         about: job})
     })
     .then(this._checkResponse)
-    .catch(err => console.log('Error al actualizar usuario:', err))
   }
 
   newCard({name, link}){

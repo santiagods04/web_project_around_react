@@ -3,6 +3,7 @@ import CurrentUserContext from "../../../../contexts/CurrentUserContext";
 
 export default function Card(props) {
   const { card, handleOpenPopup, onLike, onCardDelete, isLiked } = props;
+  const { currentUser } = useContext(CurrentUserContext);
   const cardLikeButtonClassName = `elements__icon-like ${
     isLiked ? "elements__icon-like_active" : ""
   }`;

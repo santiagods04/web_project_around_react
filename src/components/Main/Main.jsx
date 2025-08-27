@@ -8,13 +8,13 @@ import Card from "./components/Card/Card";
 import api from "../../utils/Api.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function Main() {
+export default function Main(props) {
+  const { onOpenPopup, onClosePopup, popup} = props;
   const [cards, setCards] = useState([]);
-  const [popup, setPopup] = useState(null);
   const newCardPopup = { title: "Nuevo lugar", children: <NewCard /> };
   const editAvatarPopup = { title: "Editar avatar", children: <EditAvatar /> };
   const editProfilePopup = { title: "Editar perfil", children: <EditProfile /> };
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const [selectedCard, setSelectedCard] = useState(null);
   const [loadingCards, setLoadingCards] = useState(true);
   
@@ -28,14 +28,6 @@ export default function Main() {
       .catch(err => console.log('Error al cargar tarjetas:', err))
       .finally(() => setLoadingCards(false));
   }, [currentUser?._id]);
-
-  function handleOpenPopup(popup) {
-    setPopup(popup);
-  }
-
-  function handleClosePopup() {
-    setPopup(null); 
-  }
 
   const didCurrentUserLike = (card) =>
   (typeof card?.isLiked === "boolean"
@@ -96,19 +88,19 @@ export default function Main() {
           <div className="profile__image-container">
             <img src={currentUser?.avatar} alt={currentUser?.name} className="profile__image" />
             <div className="profile__image-overlay">
-              <img src="/images/icon-edit-a.svg" alt="Editar perfil" className="profile__image-pencil" onClick={() => handleOpenPopup(editAvatarPopup)} />
+              <img src="/images/icon-edit-a.svg" alt="Editar perfil" className="profile__image-pencil" onClick={() => onOpenPopup(editAvatarPopup)} />
             </div>
           </div>
 
           <div className="profile__txt">
             <div className="profile__cont-edit">
               <h1 className="profile__name">{currentUser?.name}</h1>
-              <button className="profile__icon-edit" onClick={() => handleOpenPopup(editProfilePopup)}></button>
+              <button className="profile__icon-edit" onClick={() => onOpenPopup(editProfilePopup)}></button>
             </div>
-            <p className="profile__description">Explorador</p>
+            <p className="profile__description">{currentUser?.about}</p>
           </div>
         </div>
-        <button className="profile__btn-add" onClick={() => handleOpenPopup(newCardPopup)}></button>
+        <button className="profile__btn-add" onClick={() => onOpenPopup(newCardPopup)}></button>
       </section>
 
       
@@ -118,7 +110,7 @@ export default function Main() {
           ))}
       </section>
 
-      {popup !== null ? <Popup onClose={handleClosePopup} title={popup.title}>{popup.children}</Popup> : 
+      {popup !== null ? <Popup onClose={onClosePopup} title={popup.title}>{popup.children}</Popup> : 
         selectedCard && (<ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />)}
     </main>
   );
