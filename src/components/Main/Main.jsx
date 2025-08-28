@@ -47,15 +47,13 @@ export default function Main(props) {
           prev.map((c) => {
             if (c._id !== card._id) return c;
 
-            // Base: si la API trae la card, úsala; si no, usa la actual
             const base = fromApi && fromApi._id ? fromApi : c;
 
-            // Likes garantizados: usa los de la API si vienen; si no, toggle local
             let next = { ...base };
             if (Array.isArray(fromApi?.likes)) {
               next.likes = fromApi.likes;
             } else if (typeof base.isLiked === "boolean") {
-              next.isLiked = !wasLiked; // la API trabaja con booleano
+              next.isLiked = !wasLiked;
             } else {
               next.likes = wasLiked
                 ? c.likes.filter((u) => (u._id || u) !== currentUser?._id)
@@ -65,7 +63,6 @@ export default function Main(props) {
           })
         );
 
-        // 2) Re-sync con el backend para que al refrescar coincida
         return api.getInitialCards();
       })
       .then((fresh) => setCards(fresh))

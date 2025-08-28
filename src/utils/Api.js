@@ -102,7 +102,6 @@ class Api {
       })
     })
     .then(this._checkResponse)
-    .catch(err => console.log('Error al actualizar avatar:', err))
   }
 }
 
