@@ -83,7 +83,15 @@ function App() {
     <div className="page">
       <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}>
         <Header />
-        <Main cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} onAddPlaceSubmit={handleAddPlaceSubmit} onOpenPopup={handleOpenPopup} onClosePopup={handleClosePopup} popup={popup}/>
+        <Main 
+          cards={cards} 
+          onCardLike={handleCardLike} 
+          onCardDelete={handleCardDelete} 
+          onAddPlaceSubmit={handleAddPlaceSubmit} 
+          onOpenPopup={handleOpenPopup} 
+          onClosePopup={handleClosePopup} 
+          popup={popup}
+        />
         <Footer />
       </CurrentUserContext.Provider>
     </div>
